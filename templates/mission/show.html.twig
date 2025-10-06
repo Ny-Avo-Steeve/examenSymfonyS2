@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails mission{% endblock %}
+
+{% block body %}
+<h1>Détails de la mission</h1>
+
+<p><strong>Titre:</strong> {{ mission.titre }}</p>
+<p><strong>Lieu:</strong> {{ mission.lieu }}</p>
+<p><strong>Date:</strong> {{ mission.date ? mission.date|date('d/m/Y H:i') : '' }}</p>
+<p><strong>Bénévoles:</strong> {{ mission.nbBenevoles }}</p>
+
+<a href="{{ path('app_mission_edit', {'id': mission.id}) }}" class="btn btn-success">Éditer</a>
+<a href="{{ path('app_candidature_new', {'missionId': mission.id}) }}" class="btn btn-primary">Candidater</a>
+<a href="{{ path('app_mission_index') }}" class="btn btn-primary">Retour</a>
+{% endblock %}

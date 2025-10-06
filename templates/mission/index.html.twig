@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des missions{% endblock %}
+
+{% block body %}
+<h1>Liste des missions</h1>
+
+<a href="{{ path('app_mission_new') }}" class="btn btn-success">Créer une mission</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Lieu</th>
+            <th>Date</th>
+            <th>Bénévoles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mission in missions %}
+            <tr>
+                <td>{{ mission.titre }}</td>
+                <td>{{ mission.lieu }}</td>
+                <td>{{ mission.date ? mission.date|date('d/m/Y H:i') : '' }}</td>
+                <td>{{ mission.nbBenevoles }}</td>
+                <td>
+                    <a href="{{ path('app_mission_show', {'id': mission.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_mission_edit', {'id': mission.id}) }}" class="btn btn-success">Éditer</a>
+                    <a href="{{ path('app_candidature_new', {'missionId': mission.id}) }}" class="btn btn-primary">Candidater</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5">Aucune mission disponible.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

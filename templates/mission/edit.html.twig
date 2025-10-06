@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer/Éditer une mission{% endblock %}
+
+{% block body %}
+<h1>{{ mission is defined ? 'Éditer la mission' : 'Créer une mission' }}</h1>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">{{ mission is defined ? 'Mettre à jour' : 'Créer' }}</button>
+{{ form_end(form) }}
+{% endblock %}
